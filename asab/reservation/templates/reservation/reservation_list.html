@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}All reservations{% endblock %}
+
+{% block content %}
+    <h1>Appointments</h1>
+    {% if not object_list %}
+         <p><strong>No reservations have been made yet  </strong>
+             <a href="{% url 'new_reservation' %}">
+                Create one here
+             </a>
+         </p>
+    {% else %}
+        <table class="table table-stripped">
+            <thead>
+             <tr>
+                 <td>Id</td>
+                 <td>Venue</td>
+                 <td>Start Date</td>
+                 <td>End Date</td>
+                 <td>Start Time</td>
+                 <td>End Time</td>
+                 <td>Creator</td>
+             </tr>
+            </thead>
+
+            <tbody>
+                {% for reservation in object_list %}
+                    <tr>
+                        <td>{{ reservation.pk }}</td>
+                        <td> {{reservation.venue }}</td>
+                        <td>{{ reservation.start_time.date}}</td>
+                        <td>{{ reservation.end_time.date}}</td>
+                        <td>{{ reservation.start_time|time}}</td>
+                        <td>{{ reservation.end_time|time}}</td>
+                        <td>{{ reservation.creator}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    {% endif %}
+
+{% endblock %}

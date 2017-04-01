@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}reservation time error{% endblock %}
+
+{% block content %}
+   {% if r_start_conflict %}
+     <p>Reservation Error: Reservation Start Conflict
+        <a href="#">Try again</a>
+    </p>
+   {% elif r_end_conflict %}
+        <p>Reservation Error: End Conflict
+            <a href="#">Try again</a>
+        </p>
+   {% elif r_during_conflict %}
+        <p>Reservation Error: Reservation During Conflict
+            <a href="#">Try again</a>
+        </p>
+   {% else  %}
+        <p>Reservation Error: Reservation Start_end Conflict
+            <a href="{% url 'new_reservation' %}">Try again</a>
+        </p>
+   {% endif %}
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Sign up{% endblock %}
+
+{% block content %}
+
+    <form class="form-register" action="" method="post" style="margin-bottom: -87px">
+      {% csrf_token %}
+      <div class="register-with-email">
+          <div class="white-backrgound">
+              <div class="form-title-row">
+                  <h2>Create an account</h2>
+
+              <div class="form-row" style="margin-top: 23px">
+                  <label>
+                      <span>User Name</span>
+                      {{ user_form.username }}
+                  </label>
+
+              </div>
+
+              <div class="form-row">
+                  <label>
+                      <span>Email</span>
+                      {{ user_form.email }}
+                  </label>
+
+              </div>
+
+              <div class="form-row">
+                  <label>
+                      <span>Password</span>
+                      {{ user_form.password }}
+                  </label>
+
+              </div>
+
+              <div class="form-row">
+                  <label>
+                      <span>Repeat Password</span>
+                      {{ user_form.password2 }}
+                  </label>
+
+              </div>
+
+              <div class="form-row" style="margin-top: -35px">
+                        <button type="submit">Register</button>
+              </div>
+
+
+              <a href="#" class="form-log-in-with-existing">Already have an account? Login here &rarr;</a>
+
+
+        </div>
+
+          </div>
+
+
+      </div>
+
+    </form>
+{% endblock %}

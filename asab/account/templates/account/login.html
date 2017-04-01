@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+
+{% block title %}LOG-IN{% endblock %}
+{% block content %}
+
+  <!--<p>Please use the form below to log-in:</p>-->
+  <!--<form action="." method="post">-->
+      <!--{% csrf_token %}-->
+      <!--{{ form.as_p }}-->
+      <!--<p><input type="submit" value="Log-in"></p>-->
+  <!--</form>-->
+
+        <form class="form-login" method="post" action="#">
+
+            <div class="form-log-in-with-email">
+
+                <div class="form-white-background">
+
+                    <div class="form-title-row">
+                        <h1>Log in</h1>
+                    </div>
+
+                    <div class="form-row">
+                        <label>
+                            <span>User Name</span>
+                            {{ form.username }}
+                        </label>
+                    </div>
+
+                    <div class="form-row">
+                        <label>
+                            <span>Password</span>
+                            {{ form.password }}
+                        </label>
+                    </div>
+
+                    <div class="form-row">
+                        <button type="submit">Log in</button>
+                    </div>
+
+                </div>
+
+                <a href="#" class="form-forgotten-password">Forgotten password &middot;</a>
+                <a href="#" class="form-create-an-account">Create an account &rarr;</a>
+
+            </div>
+
+        </form>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}{{ reservation }}{% endblock title %}
+
+{% block content %}
+  <h1>Appointment Detail</h1>
+
+<div>
+    <d1 class="dl-horizontal">
+       <dt><strong>ID</strong></dt>
+       <dd>{{reservation.pk}}</dd>
+       <dt><strong>Start Time</strong></dt>
+       <dd>{{reservation.start_time}}</dd>
+       <dt><strong>End Time</strong></dt>
+       <dd>{{reservation.end_time}}</dd>
+       <dt><strong>Venue</strong></dt>
+       <dd>{{reservation.venue__title}}</dd>
+   </d1>
+
+ <a class="btn btn-default" href="{% url 'reservation_list' %}">Back</a>
+ <a class="btn btn-default" href="{% url 'update_reservation' reservation.pk %}">Edit</a>
+ <a class="btn btn-danger" data-method="delete" href="{% url 'delete_reservation' reservation.pk %}">Delete</a>
+</div>
+
+{% endblock %}
