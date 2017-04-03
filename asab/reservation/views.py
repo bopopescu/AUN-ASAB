@@ -7,6 +7,7 @@ from django.views.generic.list import ListView
 from django.template import RequestContext
 from .models import Reservation, Holiday, Venue
 from .forms import ReservationCreateForm, ReservationUpdateForm
+from django.contrib.auth.decorators import login_required
 import arrow
 
 
@@ -27,6 +28,13 @@ class ReservationDeleteView(DeleteView):
 # class ReservationUpdateView(UpdateView):
 #     model = Reservation
 #     fields = ['venue','start_time', 'end_time','phone',]
+
+@login_required
+def my_reservations(request):
+    reservations = Reservation.objects.filter(creator=request.user)
+
+    return render(request, "reservation/my_reservations.html", {"reservations": reservations,})
+
 
 def reservation_update(request, pk):
     reservation = get_object_or_404(Reservation, pk=pk)

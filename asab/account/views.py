@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import LoginForm, UserRegistrationForm
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -44,6 +45,11 @@ def register(request):
         user_form = UserRegistrationForm()
     return render(request, 'account/register.html',
                   {'user_form':user_form})
+
+@login_required
+def dashboard(request):
+    return render(request,
+        'account/dashboard.html',)
 
 
 # Create your views here.

@@ -11,6 +11,10 @@ body{
 
 }
 
+.main-content{
+    padding: 53px;
+}
+
 #header #logo {
     text-decoration:none;
     font-family:'Roboto', sans-serif;

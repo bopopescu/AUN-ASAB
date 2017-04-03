@@ -4,12 +4,16 @@
 
 {% block content %}
 
-<form action="." method="post" style="padding-right: 10px">
+<div class="main-content" style="padding: 75px">
+  <form action="." method="post" style="padding-right: 10px; margin-right: 80%" >
     {% csrf_token %}
     <p>{{ form.as_p }}</p>
     <p><input type="submit" value="Save Reservation"></p>
 
-</form>
+  </form>
+</div>
+
+
 {% endblock %}
 
 {% block page_css %}

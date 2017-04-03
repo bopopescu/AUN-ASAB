@@ -4,7 +4,14 @@
 
 {% block content %}
 
+
     <form class="form-register" action="" method="post" style="margin-bottom: -87px">
+        {% if form.errors %}
+         <div class="form-errors">
+             {{ form.errors }}
+         </div>
+
+        {% endif %}
       {% csrf_token %}
       <div class="register-with-email">
           <div class="white-backrgound">
@@ -59,4 +66,7 @@
       </div>
 
     </form>
+
+
+
 {% endblock %}

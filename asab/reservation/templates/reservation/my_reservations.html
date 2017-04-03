@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}All reservations{% endblock %}
+{% block title %}My reservations{% endblock %}
 
 {% block content %}
 
-<div class="main-content" >
-    <h1>Reservations</h1>
+<div class="main-content">
+     <h1>My Reservations</h1>
     {% if not object_list %}
          <p><strong>No reservations have been made yet  </strong>
              <a href="{% url 'new_reservation' %}">
@@ -27,7 +27,7 @@
             </thead>
 
             <tbody>
-                {% for reservation in object_list %}
+                {% for reservation in reservations %}
                     <tr>
                         <td>{{ reservation.pk }}</td>
                         <td> {{reservation.venue }}</td>
@@ -42,6 +42,7 @@
 
         </table>
     {% endif %}
+</div>
+
 
 {% endblock %}
-</div>

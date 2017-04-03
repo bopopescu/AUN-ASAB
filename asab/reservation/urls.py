@@ -1,12 +1,13 @@
 from django.conf.urls import url
 from django.conf import settings
-from .views import ReservationDetailView, ReservationListView, ReservationDeleteView, reservation_update, new_reservation
+from .views import ReservationDetailView, ReservationListView, my_reservations, ReservationDeleteView, reservation_update, new_reservation
 from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='home'),
     url(r'^reservations/$', ReservationListView.as_view(), name='reservation_list'),
+    url(r'^my_reservations/$', my_reservations, name='my_reservations'),
     url(r'^reservation/(?P<pk>[0-9]+)/$', ReservationDetailView.as_view(), name='reservation_detail'),
     url(r'^reservation/new/$', views.new_reservation, name='new_reservation'),
     url(r'^reservation/(?P<pk>[0-9]+)/delete/$', ReservationDeleteView.as_view(), name='delete_reservation'),
