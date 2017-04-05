@@ -170,6 +170,7 @@ def new_reservation(request):
             if check_end_conflict(selected_venue, start, end):
                 r_end_conflict = True
 
+
             if check_during_conflict(selected_venue, start, end):
                 r_during_conflict = True
 
@@ -180,11 +181,14 @@ def new_reservation(request):
             if (r_start_conflict or r_end_conflict or r_during_conflict or r_start_end_conflict):
                 conflict = True
 
+
             if (start < arrow.utcnow() or end < arrow.utcnow()):
                 return render(request, "reseration/reservation_past_conflict.html")
 
             if conflict:
-                return render(request, 'reservation/reservation_conflict.html')
+
+                return render(request, 'reservation/reservation_conflict.html',
+                )
             else:
                 reservation = form.save(commit=False)
                 reservation.creator = request.user

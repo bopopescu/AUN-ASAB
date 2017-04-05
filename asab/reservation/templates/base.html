@@ -43,12 +43,21 @@
             <li>
               <a href="{% url 'home' %}">Home</a>
             </li>
-            <li>
-              <a href="{% url 'register' %}">Sign Up</a>
-            </li>
-              <li>
-              <a href="{% url 'login' %}">Login</a>
-            </li>
+
+            {% if request.user.is_authenticated %}
+                  <li>
+                      <a href="{% url 'logout' %}">Sign Out</a>
+                  </li>
+
+                  <li>
+                      <a href="{% url 'my_reservations' %}">My Reservations</a>
+                  </li>
+
+              {% else %}
+                  <li>
+                      <a href="{% url 'login' %}">Sign in</a>
+                  </li>
+              {% endif %}
             <li>
               <a href="{% url 'reservation_list' %}">All Reservations</a>
             </li>

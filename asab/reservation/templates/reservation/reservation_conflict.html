@@ -3,9 +3,12 @@
 {% block title %}reservation time error{% endblock %}
 
 {% block content %}
-   {% if r_start_conflict %}
+<div class="main-content">
+
+    {% if r_start_conflict %}
      <p>Reservation Error: Reservation Start Conflict
         <a href="#">Try again</a>
+         <a href="{% url 'free_spots' %}">Here is a list of free spots for this venue</a>
     </p>
    {% elif r_end_conflict %}
         <p>Reservation Error: End Conflict
@@ -20,4 +23,6 @@
             <a href="{% url 'new_reservation' %}">Try again</a>
         </p>
    {% endif %}
+</div>
+
 {% endblock %}

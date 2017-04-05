@@ -6,7 +6,7 @@
 
 <div class="main-content">
      <h1>My Reservations</h1>
-    {% if not object_list %}
+    {% if not reservations %}
          <p><strong>No reservations have been made yet  </strong>
              <a href="{% url 'new_reservation' %}">
                 Create one here
@@ -29,7 +29,15 @@
             <tbody>
                 {% for reservation in reservations %}
                     <tr>
-                        <td>{{ reservation.pk }}</td>
+                        <td>
+                            <a href="{% url 'reservation_detail' reservation.pk %}">
+                                {{ reservation.pk }}
+                            </a>
+
+                            <a href="{% url 'update_reservation' reservation.pk %}">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                        </td>
                         <td> {{reservation.venue }}</td>
                         <td>{{ reservation.start_time.date}}</td>
                         <td>{{ reservation.end_time.date}}</td>
