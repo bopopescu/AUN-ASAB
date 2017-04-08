@@ -123,13 +123,70 @@ def check_start_end_conflict(venue, start, end):
         return True
 
 
+# def check_availability(request):
+#     conflict = False
+#     r_start_conflict = False
+#     r_end_conflict = False
+#     r_during_conflict = False
+#     r_start_end_conflict = False
+#     start_end_conflict = False
+#     available = False
+#
+#     if request.method == 'POST':
+#         form = ReservationCreateForm(request.POST)
+#
+#         if form.is_valid():
+#             cd = form.cleaned_data
+#             start = cd['start_time']
+#             end = cd['end_time']
+#             phone = cd['phone']
+#             selected_venue = cd['venue']
+#
+#             if check_start_conflict(selected_venue, start, end):
+#                 r_start_conflict = True
+#
+#             if check_end_conflict(selected_venue, start, end):
+#                 r_end_conflict = True
+#
+#
+#             if check_during_conflict(selected_venue, start, end):
+#                 r_during_conflict = True
+#
+#             if check_start_end_conflict(selected_venue, start, end):
+#                 r_start_end_conflict = True
+#
+#
+#             if (r_start_conflict or r_end_conflict or r_during_conflict or r_start_end_conflict):
+#                 conflict = True
+#
+#
+#             if conflict:
+#                 available = False
+#
+#                 return render(request, 'reservation/reservation_conflict.html',
+#                 )
+#             else:
+#                 available = True
+#
+#     else:
+#         form = ReservationCreateForm()
+#     return render(request, 'reservation/create_reservation.html', {'available':available,
+#                                                                    'r_start_conflict': r_start_conflict,
+#                                                                    'r_end_conflict': r_end_conflict,
+#                                                                    'r_during_conflict': r_during_conflict,
+#                                                                    'r_start_end_conflict': r_start_end_conflict})
+#
+#
+#
+
+
 def new_reservation(request):
     conflict = False
     r_start_conflict = False
     r_end_conflict = False
     r_during_conflict = False
     r_start_end_conflict = False
-    start_end_conflict = None
+    start_end_conflict = False
     if request.method == 'POST':
         form = ReservationCreateForm(request.POST)
 
@@ -140,29 +197,29 @@ def new_reservation(request):
             phone = cd['phone']
             selected_venue = cd['venue']
 
-            # start_conflict = Reservation.objects.filter(
-            #     status='approved',
-            #     venue__title=selected_venue,
-            #     start_time__gt=start, end_time__lt=end
-            #     )
+            start_conflict = Reservation.objects.filter(
+                status='approved',
+                venue__title=selected_venue,
+                start_time__gt=start, end_time__lt=end
+                )
 
-            # end_conflict = Reservation.objects.filter(
-            #     status='approved',
-            #     venue__title=selected_venue,
-            #     end_time__gt=start, end_time__lt=end
-            #     )
+            end_conflict = Reservation.objects.filter(
+                status='approved',
+                venue__title=selected_venue,
+                end_time__gt=start, end_time__lt=end
+                )
 
-            # during_conflict = Reservation.objects.filter(
-            #     status='approved',
-            #     venue__title=selected_venue,
-            #     start_time__lt=start, end_time__gt=end
-            # )
+            during_conflict = Reservation.objects.filter(
+                status='approved',
+                venue__title=selected_venue,
+                start_time__lt=start, end_time__gt=end
+            )
 
-            # start_end_conflict = Reservation.objects.filter(
-            #     status='approved',
-            #     venue__title=selected_venue,
-            #     start_time=start, end_time=end
-            # )
+            start_end_conflict = Reservation.objects.filter(
+                status='approved',
+                venue__title=selected_venue,
+                start_time=start, end_time=end
+            )
 
             if check_start_conflict(selected_venue, start, end):
                 r_start_conflict = True
@@ -201,11 +258,11 @@ def new_reservation(request):
                 return redirect('reservation_detail', pk=reservation.pk)
     else:
         form = ReservationCreateForm()
-    return render(request, 'reservation/create_reservation.html', {'form': form,
-                                                                   'r_start_conflict': r_start_conflict,
-                                                                   'r_end_conflict': r_end_conflict,
-                                                                   'r_during_conflict': r_during_conflict,
-                                                                   'r_start_end_conflict': r_start_end_conflict})
+    return render(request, 'reservation/create_reservation.html', {'form': form,})
+                                                                   # 'r_start_conflict': r_start_conflict,
+                                                                   # 'r_end_conflict': r_end_conflict,
+                                                                   # 'r_during_conflict': r_during_conflict,
+                                                                   # 'r_start_end_conflict': r_start_end_conflict})
 
 
 

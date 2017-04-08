@@ -5,12 +5,20 @@
 {% block content %}
 
 <div class="main-content" style="padding: 75px">
-  <form action="." method="post" style="padding-right: 10px; margin-right: 80%" >
-    {% csrf_token %}
-    <p>{{ form.as_p }}</p>
-    <p><input type="submit" value="Save Reservation"></p>
+<div class="row">
+  <div class="col-sm-4 " id="create-form">
+      <form action="." method="post"  >
+        {% csrf_token %}
+        <p>{{ form.as_p }}</p>
 
-  </form>
+       <p><input type="submit" value="Make Reservation"></p>
+
+      </form>
+  </div>
+
+  <div class="col-sm-8"></div>
+</div>
+
 </div>
 
 
