@@ -22,6 +22,14 @@
                   <label>
                       <span>User Name</span>
                       {{ user_form.username }}
+
+                      {% if user_form.username.errors %}
+                                {% for error in user_form.username.errors %}
+                                     <div class="errorlist">
+                                         <strong>{{ error|escape }}</strong>
+                                     </div>
+                                {% endfor %}
+                            {% endif %}
                   </label>
 
               </div>
@@ -30,6 +38,14 @@
                   <label>
                       <span>Email</span>
                       {{ user_form.email }}
+
+                      {% if user_form.email.errors %}
+                                {% for error in user_form.email.errors %}
+                                     <div class="errorlist">
+                                         <strong>{{ error|escape }}</strong>
+                                     </div>
+                                {% endfor %}
+                            {% endif %}
                   </label>
 
               </div>
@@ -38,6 +54,14 @@
                   <label>
                       <span>Password</span>
                       {{ user_form.password }}
+
+                      {% if user_form.password.errors %}
+                                {% for error in user_form.password.errors %}
+                                     <div class="errorlist">
+                                         <strong>{{ error|escape }}</strong>
+                                     </div>
+                                {% endfor %}
+                            {% endif %}
                   </label>
 
               </div>
@@ -46,6 +70,14 @@
                   <label>
                       <span>Repeat Password</span>
                       {{ user_form.password2 }}
+
+                      {% if user_form.password2.errors %}
+                                {% for error in user_form.password2.errors %}
+                                     <div class="errorlist">
+                                         <strong>{{ error|escape }}</strong>
+                                     </div>
+                                {% endfor %}
+                            {% endif %}
                   </label>
 
               </div>
@@ -55,7 +87,7 @@
               </div>
 
 
-              <a href="#" class="form-log-in-with-existing">Already have an account? Login here &rarr;</a>
+              <a href="{% url 'login' %}" class="form-log-in-with-existing">Already have an account? Login here &rarr;</a>
 
 
         </div>

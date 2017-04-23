@@ -92,7 +92,7 @@ DATABASES = {
     # }
     'default': {
         'ENGINE': 'mysql.connector.django',
-        'NAME': 'asab',
+        'NAME': 'asabs',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '',
@@ -116,11 +116,30 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Email configurations
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'ticha.muma@aun.edu.ng'
+EMAIL_HOST_PASSWORD = '8g5K32Vx5z'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+
+# Redis settings
+
+# REDIS_HOST = 'localhost'
+# REDIS_PORT = 6379
+# REDIS_DB = 1
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 LOGIN_REDIRECT_URL = reverse_lazy('dashboard')
 LOGIN_URL = reverse_lazy('login')

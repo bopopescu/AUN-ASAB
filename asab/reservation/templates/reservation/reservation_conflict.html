@@ -7,22 +7,50 @@
 
     {% if r_start_conflict %}
      <p>Reservation Error: Reservation Start Conflict
-        <a href="#">Try again</a>
-         <a href="{% url 'free_spots' %}">Here is a list of free spots for this venue</a>
     </p>
    {% elif r_end_conflict %}
         <p>Reservation Error: End Conflict
-            <a href="#">Try again</a>
         </p>
    {% elif r_during_conflict %}
         <p>Reservation Error: Reservation During Conflict
-            <a href="#">Try again</a>
         </p>
    {% else  %}
         <p>Reservation Error: Reservation Start_end Conflict
-            <a href="{% url 'new_reservation' %}">Try again</a>
         </p>
-   {% endif %}
+
+    <p>Please check the following reservations to pick a free spot</p>
+
+    <table class="table table-stripped">
+            <thead>
+             <tr>
+                 <td>Id</td>
+                 <td>Facility</td>
+                 <td>Start Date</td>
+                 <td>End Date</td>
+                 <td>Start Time</td>
+                 <td>End Time</td>
+                 <td>Creator</td>
+             </tr>
+            </thead>
+
+            <tbody>
+                {% for reservation in conflicting_reservations %}
+                    <tr>
+                        <td>{{ reservation.pk }}</td>
+                        <td> {{reservation.facility }}</td>
+                        <td>{{ reservation.start_time.date}}</td>
+                        <td>{{ reservation.end_time.date}}</td>
+                        <td>{{ reservation.start_time|time}}</td>
+                        <td>{{ reservation.end_time|time}}</td>
+                        <td>{{ reservation.creator}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+
+    <a href="{% url 'new_reservation' %}">Try again</a>
+    {% endif %}
 </div>
 
 {% endblock %}

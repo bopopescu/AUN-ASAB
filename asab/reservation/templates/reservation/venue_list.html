@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+    {% if category %}{{ category.name }}{% else %}{% trans "Venues" %}{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="main-content" style="padding: 0px 100px">
+    <div id="sidebar">
+        <h3>{% trans "Venues" %}</h3>
+        <ul>
+            <li class="selected">
+                <a href="{% url 'venue_list' %}">{% trans "All" %}</a>
+            </li>
+        </ul>
+    </div>
+    <div id="main" class="venue-list" style="padding: 68px">
+        <!--<h2>{% trans "All Venues" %}</h2>-->
+        {% for venue in venues %}
+            <div class="item">
+                <a href="{{ venue.get_absolute_url }}">
+                    <img src="{% if venue.photo %}{{ venue.photo.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}">
+                </a>
+                <a href="{{ venue.get_absolute_url }}">{{ venue.title }}</a><br>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

@@ -21,6 +21,14 @@
                         <label>
                             <span>User Name</span>
                             {{ form.username }}
+
+                            {% if form.username.errors %}
+                                {% for error in form.username.errors %}
+                                     <div class="errorlist">
+                                         <strong>{{ error|escape }}</strong>
+                                     </div>
+                                {% endfor %}
+                            {% endif %}
                         </label>
                     </div>
 
@@ -28,6 +36,14 @@
                         <label>
                             <span>Password</span>
                             {{ form.password }}
+
+                            {% if form.password.errors %}
+                                {% for error in form.password.errors %}
+                                     <div class="errorlist">
+                                         <strong>{{ error|escape }}</strong>
+                                     </div>
+                                {% endfor %}
+                            {% endif %}
                         </label>
                     </div>
 

@@ -8,7 +8,7 @@
      <h1>My Reservations</h1>
     {% if not reservations %}
          <p><strong>No reservations have been made yet  </strong>
-             <a href="{% url 'new_reservation' %}">
+             <a href="{% url 'venue_list' %}">
                 Create one here
              </a>
          </p>
@@ -17,7 +17,7 @@
             <thead>
              <tr>
                  <td>Id</td>
-                 <td>Venue</td>
+                 <td>Facility</td>
                  <td>Start Date</td>
                  <td>End Date</td>
                  <td>Start Time</td>
@@ -38,7 +38,7 @@
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </a>
                         </td>
-                        <td> {{reservation.venue }}</td>
+                        <td> {{reservation.facility }}</td>
                         <td>{{ reservation.start_time.date}}</td>
                         <td>{{ reservation.end_time.date}}</td>
                         <td>{{ reservation.start_time|time}}</td>
@@ -50,6 +50,9 @@
 
         </table>
     {% endif %}
+
+    <a class="btn btn-default r-venue" href="{% url 'venue_list' %}">Reserve a Venue</a>
+
 </div>
 
 

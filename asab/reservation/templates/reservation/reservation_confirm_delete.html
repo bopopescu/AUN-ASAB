@@ -7,9 +7,13 @@
 {% block content %}
 {% csrf_token %}
 
-<form action="" method="post">
+<div class="main-content">
+    <form action="" method="post">
+        {% csrf_token %}
     <p>Are you sure you want to delete <strong>{{ object }}</strong></p>
         <a class="btn btn-default" href="javascript:history.back()">Back</a>
     <button type="submit" class="btn btn-danger">Delete</button>
 </form>
+</div>
+
 {% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    {{ venue }}
+{% endblock %}
+
+{% block content %}
+<div class="main-content">
+    <div class="venue-detail">
+    <img src="{% if venue.photo %}{{ venue.photo.url }}{% else %}
+    {% static 'img/no_image.png' %}{% endif %}">
+    <h1>{{ venue.title }}</h1>
+    <p class="available">${{ venue.available }}</p>
+    {{ venue.description|linebreaks }}
+    <a class="btn btn-default r-venue" href="{% url 'new_reservation' %}">Reserve this Venue</a>
+    </div>
+</div>
+
+{% endblock %}
