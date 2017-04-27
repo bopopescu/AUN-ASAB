@@ -7,7 +7,10 @@ class ReservationCreateForm(ModelForm):
     def __init__(self, options, *args, **kwargs):
         super(ReservationCreateForm, self).__init__(*args, **kwargs)
         # self.fields['facility'].widget.attrs.update({'class': 'facility'})
-        self.fields['facility'].choices = options
+        if not options:
+            options = None
+        else:
+            self.fields['facility'].choices = options
 
 
         # self.fields['start_time'].widget.attrs.update({'class': 'start'})

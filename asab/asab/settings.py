@@ -119,8 +119,8 @@ USE_TZ = True
 # Email configurations
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'ticha.muma@aun.edu.ng'
-EMAIL_HOST_PASSWORD = '8g5K32Vx5z'
+EMAIL_HOST_USER = 'asab.aun@gmail.com'
+EMAIL_HOST_PASSWORD = 'asabaun123'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
