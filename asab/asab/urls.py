@@ -21,7 +21,8 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^asab/', include('reservation.urls')),
-    url(r'^account/', include('account.urls'))
+    # url(r'^account/', include('account.urls')),
+    url(r'^accounts/', include('allauth.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

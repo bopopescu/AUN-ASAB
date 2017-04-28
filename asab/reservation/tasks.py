@@ -28,6 +28,7 @@ def send_reminder(reservation_id):
     subject = 'Reservation notification'
     message = "Hello \n\nYou have successfully booked {} from {} to {}".format(facility,
                                                                                  start, end)
+
     mail_sent = send_mail(subject, message, 'asab.aun@gmail.com',
-                          [reservation.email], fail_silently=False)
+                          [reservation.email, 'asab.aun@gmail.com'], fail_silently=False)
     return mail_sent

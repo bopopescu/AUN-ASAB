@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load account socialaccount %}
+
+
+
+{% block title %}{% trans "Sign In" %}{% endblock %}
+{% block content %}
+
+<div class="main-content">
+    <form class="form-login" method="post" action="">
+            {% csrf_token %}
+
+            <div class="form-log-in-with-email">
+
+                <div class="form-white-background">
+
+                    <div class="form-title-row">
+                        <h1>{% trans "Sign In" %}</h1>
+                    </div>
+
+
+                    <div class="form-row">
+                        <label>
+                            <span>User Email</span>
+                            {{ form.login }}
+
+
+                            {% if form.login.errors %}
+                                {% for error in form.login.errors %}
+                                     <div class="errorlist">
+                                         <strong>{{ error|escape }}</strong>
+                                     </div>
+                                {% endfor %}
+                            {% endif %}
+                        </label>
+                    </div>
+
+                    <div class="form-row">
+                        <label>
+                            <span>Password</span>
+                            {{ form.password }}
+
+                            {% if form.password.errors %}
+                                {% for error in form.password.errors %}
+                                     <div class="errorlist">
+                                         <strong>{{ error|escape }}</strong>
+                                     </div>
+                                {% endfor %}
+                            {% endif %}
+                        </label>
+                    </div>
+
+
+
+
+                    <div class="form-row">
+                        <input type="hidden" name="next" value="{{ next }}" />
+                        <button type="submit">Log in</button>
+                    </div>
+
+                    {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+
+
+
+                </div>
+
+                <a href="{% url 'account_reset_password' %}" class="form-forgotten-password">Forgotten password &middot;</a>
+                <a href="{{ signup_url }}" class="form-create-an-account">Create an account &rarr;</a>
+
+            </div>
+
+        </form>
+
+
+</div>
+
+
+{% endblock %}

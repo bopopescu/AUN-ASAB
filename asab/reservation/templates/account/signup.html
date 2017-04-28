@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}Sign up{% endblock %}
+
+{% block content %}
+
+<div class="main-content">
+    <form class="form-register" action="" method="post" style="margin-bottom: -87px">
+      {% csrf_token %}
+      <div class="register-with-email">
+          <div class="white-backrgound">
+              <div class="form-title-row">
+                  <h2>Create an account</h2>
+
+              <div class="form-row" style="margin-top: 23px">
+
+              </div>
+
+              <div class="form-row">
+                  <label>
+                      <span>Email</span>
+                      {{ form.email }}
+
+                      {% if form.email.errors %}
+                                {% for error in form.email.errors %}
+                                     <div class="errorlist">
+                                         <strong>{{ error|escape }}</strong>
+                                     </div>
+                                {% endfor %}
+                            {% endif %}
+                  </label>
+
+              </div>
+
+              <div class="form-row">
+                  <label>
+                      <span>Password</span>
+                      {{ form.password1 }}
+
+                      {% if form.password1.errors %}
+                                {% for error in form.password1.errors %}
+                                     <div class="errorlist">
+                                         <strong>{{ error|escape }}</strong>
+                                     </div>
+                                {% endfor %}
+                            {% endif %}
+                  </label>
+
+              </div>
+
+              <div class="form-row">
+                  <label>
+                      <span>Repeat Password</span>
+                      {{ form.password2 }}
+
+                      {% if form.password2.errors %}
+                                {% for error in form.password2.errors %}
+                                     <div class="errorlist">
+                                         <strong>{{ error|escape }}</strong>
+                                     </div>
+                                {% endfor %}
+                            {% endif %}
+                  </label>
+
+              </div>
+
+              <div class="form-row" style="margin-top: -35px">
+                        <button type="submit">Register</button>
+              </div>
+
+
+              <a href="{{ login_url }}" class="form-log-in-with-existing">Already have an account? Login here &rarr;</a>
+
+
+        </div>
+
+          </div>
+
+
+      </div>
+
+    </form>
+
+</div>
+
+
+
+{% endblock %}
